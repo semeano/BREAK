@@ -1,0 +1,114 @@
+<html>
+<head>
+    <title>EB</title>
+    <style type="text/css" media="screen">
+
+        html, body {
+            background: #1a1a1a;
+            font-family: 'Play', sans-serif;
+            margin: 0;
+            font-size: 100%;
+        }
+        
+        .stats {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="container"></div>
+
+    <!-- Libraries -->
+    <script src="core/jquery/1.7.1/jquery.min.js"></script>
+    <script src="core/stats/Stats.js"></script>
+    <!-- Core -->
+    <script src="core/base.js"></script>
+    <script src="core/math/Random.js"></script>
+    <script src="core/math/Vector.js"></script>
+    <!-- Integrators -->
+    <script src="core/engine/integrator/Integrator.js"></script>
+    <script src="core/engine/integrator/Euler.js"></script>
+    <script src="core/engine/integrator/ImprovedEuler.js"></script>
+    <script src="core/engine/integrator/Verlet.js"></script>
+    <!-- Engine -->
+    <script src="core/engine/Particle.js"></script>
+    <script src="core/engine/Physics.js"></script>
+    <script src="core/engine/Spring.js"></script>
+    <!-- Behaviours -->
+    <script src="core/behaviour/Behaviour.js"></script>
+    <script src="core/behaviour/Attraction.js"></script>
+    <script src="core/behaviour/Collision.js"></script>
+    <script src="core/behaviour/ConstantForce.js"></script>
+    <script src="core/behaviour/EdgeBounce.js"></script>
+    <script src="core/behaviour/EdgeWrap.js"></script>
+    <script src="core/behaviour/Wander.js"></script>
+    <!-- Demo Renderers -->
+    <script src="core/demos/renderer/Renderer.js"></script>
+    <script src="core/demos/renderer/CanvasRenderer.js"></script>
+    <script src="core/demos/renderer/WebGLRenderer.js"></script>
+    <script src="core/demos/renderer/DOMRenderer.js"></script>
+    <!-- Demos -->
+    <script src="core/demos/Demo.js"></script>
+    <script src="core/demos/pixel/pixel.js"></script>
+    <script src="core/demos/icons/EB.js"></script>
+    <script src="core/demos/EBDemo.js"></script>
+    <script>
+        
+        var light = false;
+
+        (function() {
+
+            var demo;
+            var stats;
+            var renderer;
+            var container;
+            var $renderer;
+
+            // Initialises the testbed and starts the default demo.
+            function init() {
+
+                stats = new Stats();
+                renderer = 'WebGLRenderer';
+                container = $('#container');
+                $renderer = $('#renderer-select a');
+
+                // Append stats.
+                stats.domElement.className = 'stats';
+                document.body.appendChild(stats.domElement);
+
+                // Set default demo and start updating.
+                setDemo();
+                update();
+            }
+
+            // Updates current demo.
+            function update() {
+
+                requestAnimationFrame(update);
+                demo.step();
+                stats.update();
+            }
+
+            // Sets the current demo.
+            function setDemo() {
+
+                // Initialise new demo.
+                demo = new EBDemo();
+                demo.init(container.get(0), new self[ renderer ]());
+
+                // Provide access from console for debugging.
+                self.__demo = demo;
+            }
+
+            init();
+
+        })();
+        
+    </script>
+</body>
+</html>
