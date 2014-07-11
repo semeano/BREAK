@@ -12,51 +12,51 @@ EBDemo = (function(_super) {
   }
 
   EBDemo.prototype.setup = function(full) {
-      
+
     var attraction, bounds, collide, i, max, min, p, repulsion, mouse_repulsion, _i, _results, center, j;
 
     if (full == null) {
       full = true;
     }
-      
+
     EBDemo.__super__.setup.call(this, full);
-      
+
     min = new Vector(0.0, 0.0);
     max = new Vector(this.width, this.height);
     bounds = new EdgeBounce(min, max);
-      
+
     this.physics.integrator = new Verlet();
-      
+
     center = new Vector(this.width * 0.5, this.height * 0.5);
     attraction = new Attraction(center, 1200, 800);
     //repulsion = new Attraction(center, 25, -100000);
     mouse_repulsion = new Attraction(this.mouse.pos, 200, -2000);
-      
+
     collide = new Collision();
-    max = full ? 400 : 200;
+    max = full ? 600 : 300;
     _results = [];
-      
+
     for (i = _i = 0; 0 <= max ? _i <= max : _i >= max; i = 0 <= max ? ++_i : --_i) {
-      p = new Particle(Random(0.1, 3.0));
-      p.setRadius(p.mass * 4);
+      p = new Particle(Random(1.0, 4.0));
+      p.setRadius(p.mass * 2);
       p.moveTo(new Vector(Random(this.width), Random(this.height)));
       p.behaviours.push(attraction);
-      
+
       //p.behaviours.push(repulsion);
-        
+
       // EB repulsion
       var letter = new EB(new Vector(this.width * 0.5, this.height * 0.5 - 15));
       for (j = 0; j < letter.canvas.length; j++) {
         p.behaviours.push(letter.canvas[j]);
       }
-        
+
       p.behaviours.push(mouse_repulsion);
       p.behaviours.push(bounds);
       p.behaviours.push(collide);
       collide.pool.push(p);
       _results.push(this.physics.particles.push(p));
     }
-      
+
     return _results;
   };
 
