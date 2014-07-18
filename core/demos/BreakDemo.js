@@ -33,7 +33,7 @@ BreakDemo = (function(_super) {
 
     // Particles
     collide = new Collision();
-    max = full ? 500 : 250;
+    max = full ? 400 : 250;
     _results = [];
 
     for (i = _i = 0; 0 <= max ? _i <= max : _i >= max; i = 0 <= max ? ++_i : --_i) {
