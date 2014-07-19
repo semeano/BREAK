@@ -20,12 +20,12 @@ BreakDemo = (function(_super) {
     }
 
     // Set background-image
-    if (full) {
-      $('body').css('background-image', "none");
-    }
-    else {
-      $('body').css('background-image', "url('img/break.png')");
-    }
+    // if (full) {
+    //   $('body').css('background-image', "none");
+    // }
+    // else {
+    //   $('body').css('background-image', "url('img/break.png')");
+    // }
 
     BreakDemo.__super__.setup.call(this, full);
 
@@ -41,7 +41,7 @@ BreakDemo = (function(_super) {
 
     // Particles
     collide = new Collision();
-    max = full ? 500 : 250;
+    max = full ? 450 : 200;
     _results = [];
 
     for (i = _i = 0; 0 <= max ? _i <= max : _i >= max; i = 0 <= max ? ++_i : --_i) {
