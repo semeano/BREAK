@@ -8,7 +8,7 @@
 
 body {
   background: #000;
-  background-image: url("../img/break.png");
+  /*background-image: url("../img/break.png");*/
   background-position: center center;
   background-repeat: no-repeat;
   margin: 0;
@@ -18,9 +18,9 @@ body {
 
 .button {
   position: absolute;
-  bottom: 50%;
+  top: 50%;
   left: 50%;
-  margin-bottom: -170px;
+  margin-top: 130px;
   margin-left: -123px;
   padding: 20px;
   border: 3px solid #fff;
